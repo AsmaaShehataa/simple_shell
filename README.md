@@ -1,1 +1,1 @@
-This is Simple Shell Project
+This is the ALX simple_shell Project folder.
