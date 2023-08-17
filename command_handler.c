@@ -1,56 +1,37 @@
 #include "hsh.h"
 
-void exec_command(char **arg_array)
+void exec_command(char **arg_array, char **env)
 {
-	extern char **environ;
 	pid_t parent_pid;
 	pid_t child_pid;
-	int env_counter;
-	int status;
+	int wait_status; //renaming to wait_status.
+	int exec_status;
 
-	//calling the parent id in here (befour executing any command)
-	//parent_pid = getppid();
-	if (strcmp(arg_array[0], "env") == 0)
-	{
-		env_counter = 0;
-		while (environ[env_counter])
-		{
-			printf("%s\n", environ[env_counter]);
-			env_counter++;
-		}
-	}
-	// herestarts the process creation
+	parent_pid = getpid();
 	child_pid = fork(); //remember the fork return two values when success, 0 and the pid value (unsigned int).
-	/*if ((strcmp(arg_array[0], "env") != 0) && (execve(arg_array[0], arg_array, environ) == -1))
-	{
-		fprintf(stderr, "Error while ecxecuting the command");
-		free(arg_array);
-		exit(-1);
-	}
-	*/
 	printf("the child process id is: %u\n", child_pid);
-	if (child_pid == -1) //in case of any arrors creating the child.
+	if (child_pid < 0) //in case of any arrors creating the child.
 	{
 		fprintf(stderr, "Error while retreiving the child pid");
 		free(arg_array);
 		exit(-1);
 	}
-	else if (child_pid == 0)
+	else if ((child_pid) == 0) // the fork return 0 to the child
 	{
+		exec_status = execve(arg_array[0], arg_array, env);
 		//this means that the child process is created and return 0 (indicating success)
-		if ((strcmp(arg_array[0], "env") != 0) && (execve(arg_array[0], arg_array, environ) == -1))
+		if (exec_status < 0)
 		{
-			fprintf(stderr, "Erroor while executing the command");
+			perror("Error");
 			free(arg_array);
-			exit(-1); // thsi is important in case of an error to free the sub process.
+			exit(-1);
 		}
-		
 	}
-	else
+	else //the fork() returns the process id to the parent (we can use this to wait for the child to exit)
 	{
 		//this means that the child is created and return pid value.
-		// execute the wait function.
-		wait(&status);
+		// execute the wait command from the parent
+		wait(&wait_status);
 	}
 	//this is not reached (that's why), and still we dont need to free it in prompt.c
 	free(arg_array);

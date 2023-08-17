@@ -27,7 +27,6 @@ char **arg_process(char *user_input)
 	free(string_holder);
 	free(token);
 	//allocate memory in here
-	printf("this is from the arg_process(), the counter is: %d\n", counter); //print the number of arguments
 	arg_array = malloc(sizeof(char *) * (counter + 1));
 	//we are allocation the elements to the array
 	i = 0;
