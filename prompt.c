@@ -11,66 +11,48 @@
 
 int main(int argc __attribute__((unused)), char *argv[]__attribute__((unused)), char **env)
 {
-	char *user_input;
+	char *user_input, **arr_holder;
 	size_t len;
 	ssize_t nread;
-	char **arr_holder;
-	int arr_len;
-	int exit_status;
-	
-	user_input = NULL;
-	len = 0;
+	int arr_len, exit_status, env_status;
+
 	if (isatty(STDIN_FILENO))
 	{
 		while (1)
 		{
 			printf("$ ");
+			user_input = NULL;
+			len = 0;
 			nread = getline(&user_input, &len, stdin);
-			if (nread == -1)
+			if (nread < 1) //this in here checks if there are errors from the getline() 
 			{
 				if (feof(stdin)) //checking for end of file it's equivalent to : Ctr-D
 				{
 					free(user_input);
 					exit(EXIT_SUCCESS);//the user wants this
 				}
-				perror("Error: ");
-				free(user_input);
+				//free(user_input); //removing this because it procduces double free erros.
 			}
-			//fix the user input by removing the '\n' terminated character.
 			user_input[nread - 1] = '\0';
-			//check for exit in here.
-			
-			if (nread > 1)
+			// -> create a linked list, stored in an output of a funciotn struct *node head;
+			env_status = print_env(env, user_input);
+			exit_status = __exit(user_input);
+			if (exit_status == 0)
+				exit(EXIT_SUCCESS);			
+			if ((nread != 1) && (env_status == -1)) // parse the arguments and execute the command is env_status == -1
 			{
-				//retriving the array length to allocate suffitiont memory.
 				arr_len = arg_arr_lenth(user_input);
-				//allocate memory to the holder array based on the lenght of the argument array
-				arr_holder = malloc(sizeof(char *) * (arr_len));
-				//passing the user input as an argument to the arg_process function.
-				arr_holder = arg_process(user_input); //pars the arguments
-				//pass the returned value as an arg to the execution function.
-				if (strcmp(user_input, "env") == 0)
-				{
-					print_env(env);
-				}
-				else if (strcmp(user_input, "exit") == 0)
-				{
-					exit_status = __exit(user_input);
-					if (exit_status == 0)
-					{
-						free(arr_holder);
-						exit(EXIT_SUCCESS);
-					}
-				}
-				else
-				{
-					printf("Befoure the executions\n"); // debug message starts
-					exec_command(arr_holder, env);
-					printf("After the execution\n"); //debug message ends.
-				}
-				// the freeing is gonna be taken care of from the exec_command(), it's just not being reached yet.
+				arr_holder = arg_process(user_input);
+				// this line will have the linked list
+				// -> function that cehcks the arr_holder[0] against the linked list nodes [these are folders cause of PATH] 'ls'
+				// -> this function will return 0 if it wasn't found,or the directory the binary was found in stat(name-bin, stat) /bin 
+				// -> fucntion which handles the retreived output from the function above, and produces the correct path: /bin/ls,
+				// -> the last function will pass it's result to arr_holder[0]. -> this is gomma be passed normally to exec_command().
+				exec_command(arr_holder, env, user_input); //arr_holder[0] must be acomplete path /bin/ls
 			}
-		}
+			else
+				free(user_input); //free the memory when the env_status is 0
+		} //end of while loop.
 	}
 	else
 	{
