@@ -1,12 +1,13 @@
 #include "hsh.h"
 
-void exec_command(char **arg_array, char **env)
+void exec_command(char **arg_array, char **env, char *user_input)
 {
 	pid_t parent_pid;
 	pid_t child_pid;
 	int wait_status; //renaming to wait_status.
 	int exec_status;
 
+	//we still have to check if the user inputed an existing command 
 	parent_pid = getpid();
 	child_pid = fork(); //remember the fork return two values when success, 0 and the pid value (unsigned int).
 	printf("the child process id is: %u\n", child_pid);
@@ -34,6 +35,7 @@ void exec_command(char **arg_array, char **env)
 		wait(&wait_status);
 	}
 	//this is not reached (that's why), and still we dont need to free it in prompt.c
-	free(arg_array);
+	free(arg_array); //this equals arg_holder from main
+	free(user_input);
 	// int his file we ignored the use of wait and process handler for now.
 }

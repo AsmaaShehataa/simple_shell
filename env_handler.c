@@ -7,14 +7,22 @@
  * Return: nothing.
  */
 
-void print_env(char **env)
+int print_env(char **env, char *user_input)
 {
 	int counter;
 
 	counter = 0;
-	while (env[counter] != NULL)
+	if (strcmp(user_input, "env") == 0)
 	{
-		printf("%s\n", env[counter]);
-		counter++;
+		while (env[counter] != NULL)
+		{
+			printf("%s\n", env[counter]);
+			counter++;
+		}
+		return (0);
+	}
+	else
+	{
+		return (-1);
 	}
 }

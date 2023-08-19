@@ -24,14 +24,14 @@ char **arg_process(char *user_input)
 		counter++;
 		token = strtok(NULL, delim);
 	}
-	free(string_holder);
-	free(token);
+	//free(string_holder);
 	//allocate memory in here
 	arg_array = malloc(sizeof(char *) * (counter + 1));
 	//we are allocation the elements to the array
 	i = 0;
-	string_holder = strdup(user_input);
 	//string_holder = strdup(user_input);
+	//string_holder = strdup(user_input)
+	
 	token = strtok(user_input, delim);
 	while (token)
 	{
@@ -39,14 +39,15 @@ char **arg_process(char *user_input)
 		token = strtok(NULL, delim);
 		i++;
 	}
-	free(token);
+		//free(token);
 	//while the NULL element to the end of the array.
 	arg_array[i] = NULL;
 	//free the string holder memory in here
 	free(string_holder);
 	//befour the returning and for testing only. -> this returns a complete and correct array of arguments.
 	//returning the resulted array.
-	return (arg_array); //make sure to free the memory we used for this array.
+	//free(user_input);
+	return (arg_array);
 }
 
 /**
@@ -72,7 +73,6 @@ int arg_arr_lenth(char *user_input)
 		counter++;
 		token = strtok(NULL, delim);
 	}
-	free(token);
 	free(str_holder);
 	counter = counter + 1;
 	return (counter);
