@@ -1,6 +1,6 @@
 #include "hsh.h"
 
-void exec_command(char **arg_array, char **env, char *user_input)
+void exec_command(char **arg_array, char **env, char *user_input, int slash_status)
 {
 	pid_t parent_pid;
 	pid_t child_pid;
@@ -29,12 +29,12 @@ void exec_command(char **arg_array, char **env, char *user_input)
 		}
 	}
 	else //the fork() returns the process id to the parent (we can use this to wait for the child to exit)
-	{
-		//this means that the child is created and return pid value.
-		// execute the wait command from the parent
+	{		
 		wait(&wait_status);
 	}
 	//this is not reached (that's why), and still we dont need to free it in prompt.c
+	if (slash_status == -1)
+		free(arg_array[0]);
 	free(arg_array); //this equals arg_holder from main
 	free(user_input);
 	// int his file we ignored the use of wait and process handler for now.

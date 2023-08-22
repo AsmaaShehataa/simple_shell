@@ -11,6 +11,7 @@ int check_slash(char *user_input) //arr_holder[0]
 	{
 		if (holder[counter] == '/')
 		{
+			free(holder); // free the holder then return.
 			return (0);
 		}
 		counter++;
