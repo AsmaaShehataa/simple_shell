@@ -9,7 +9,8 @@
  * Return: exit_success in case of success, -1 otherwise.
  */
 
-int main(int argc, char **argv, char **env)
+int main(int argc __attribute__ ((unused)),
+	 char **argv __attribute__ ((unused)), char **env)
 {
 	char *user_input, sign, sp, *user_input_ni;
 	size_t len;

@@ -26,6 +26,13 @@ char **get_path_arr(const char *path_str, char **env)
 		els_num++;
 	}
 	path_arr = malloc(sizeof(char *) * (els_num + 1));
+	if (path_arr == NULL)
+	{
+		perror("Error while allocating memory.");
+		free(path_value_str);
+		free(path_value_holder);
+		exit(EXIT_FAILURE);
+	}
 	value_int = 0;
 	token = strtok(path_value_holder, two_pt_delim);
 	while (token)
