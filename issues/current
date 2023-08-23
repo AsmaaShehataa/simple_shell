@@ -1,5 +1,5 @@
 fixing the technical memory errors pointed by valgrind
-betty styling for all the files
+betty styling is done
 betty documentation for all the files
 refactoring the code for prompt.c, in order to fix betty-styling more than 40 line error
 removing the debugging messages.
