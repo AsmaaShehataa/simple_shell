@@ -25,6 +25,12 @@ char **arg_process(char *user_input)
 		token = strtok(NULL, delim);
 	}
 	arg_array = malloc(sizeof(char *) * (counter + 1));
+	if (arg_array == NULL)
+	{
+		perror("Error allocating memory");
+		free(user_input);
+		exit(EXIT_FAILURE);
+	}
 	i = 0;
 	token = strtok(user_input, delim);
 	while (token)

@@ -17,7 +17,7 @@ int print_env(char **env, char *user_input)
 	{
 		while (env[counter] != NULL)
 		{
-			printf("%s\n", env[counter]);
+			print_string(env[counter]);
 			counter++;
 		}
 		return (0);

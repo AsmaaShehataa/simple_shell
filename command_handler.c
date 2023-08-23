@@ -3,7 +3,7 @@
 void exec_command(char **arg_array, char **env,
 		  char *user_input, int slash_status)
 {
-	pid_t parent_pid;
+	pid_t parent_pid __attribute__ ((unused));
 	pid_t child_pid;
 	int wait_status;
 	int exec_status;

@@ -24,5 +24,5 @@ int c_availability(char *command);
 void prompt_holder(char *user_input, char **env, int nread);
 void slash_status_holder(int slash_status, char **arr_holder,
 			 char *executable_holder, char **env, char *user_input);
-
+void print_string(char *string);
 #endif
