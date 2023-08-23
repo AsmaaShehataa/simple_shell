@@ -17,7 +17,6 @@ char **modify_buffer(char *executable_holder, char **env)
 
 	counter = 0;
 	path_str = "PATH";
-	printf("modify_buffer(),the passed executable: %s\n", executable_holder);
 	buffer = get_path_arr(path_str, env);
 
 	while (buffer[counter])
@@ -61,7 +60,6 @@ char *check_command(char *executable_holder, char **env)
 	{
 		if (stat(new_buffer[counter], &status) == 0)
 		{
-			printf("check_command(),exc found in dir: %s\n", new_buffer[counter]);
 			if (!found_path)
 			{
 				found_path = new_buffer[counter];

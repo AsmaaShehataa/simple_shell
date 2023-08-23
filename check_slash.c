@@ -1,6 +1,13 @@
 #include "hsh.h"
 
-int check_slash(char *user_input) //arr_holder[0]
+/**
+ * check_slash - check the user input for '/'
+ * @user_input: the user input.
+ *
+ * Return: 0 if there is a slash, -1 otherwise.
+ */
+
+int check_slash(char *user_input)
 {
 	int counter;
 	char *holder;
@@ -11,7 +18,7 @@ int check_slash(char *user_input) //arr_holder[0]
 	{
 		if (holder[counter] == '/')
 		{
-			free(holder); // free the holder then return.
+			free(holder);
 			return (0);
 		}
 		counter++;

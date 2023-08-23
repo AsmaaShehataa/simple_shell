@@ -3,8 +3,9 @@
  * arg_process - process the user input.
  * @user_input: the string inputed from the user.
  *
- * Return : array of arguments.
+ * Return: array of arguments.
  */
+
 char **arg_process(char *user_input)
 {
 	char **arg_array;
@@ -16,7 +17,6 @@ char **arg_process(char *user_input)
 
 	delim = " ";
 	string_holder = strdup(user_input);
-	//this first while will calculate the length of the array.
 	token = strtok(string_holder, delim);
 	counter = 0;
 	while (token)
@@ -24,14 +24,8 @@ char **arg_process(char *user_input)
 		counter++;
 		token = strtok(NULL, delim);
 	}
-	//free(string_holder);
-	//allocate memory in here
 	arg_array = malloc(sizeof(char *) * (counter + 1));
-	//we are allocation the elements to the array
 	i = 0;
-	//string_holder = strdup(user_input);
-	//string_holder = strdup(user_input)
-	
 	token = strtok(user_input, delim);
 	while (token)
 	{
@@ -39,22 +33,15 @@ char **arg_process(char *user_input)
 		token = strtok(NULL, delim);
 		i++;
 	}
-		//free(token);
-	//while the NULL element to the end of the array.
 	arg_array[i] = NULL;
-	//free the string holder memory in here
 	free(string_holder);
-	//befour the returning and for testing only. -> this returns a complete and correct array of arguments.
-	//returning the resulted array.
-	//free(user_input);
 	return (arg_array);
 }
-
 /**
  * arg_arr_lenth - return the lenth of the argument array.
- * @user_input.
+ * @user_input: the input given by the user.
  *
- * Return the length of the array.
+ * Return: the length of the array.
  */
 
 int arg_arr_lenth(char *user_input)
@@ -63,7 +50,7 @@ int arg_arr_lenth(char *user_input)
 	char *token;
 	char *delim;
 	char *str_holder;
-	
+
 	delim = " ";
 	counter = 0;
 	str_holder = strdup(user_input);

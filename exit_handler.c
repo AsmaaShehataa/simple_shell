@@ -3,7 +3,7 @@
  * __exit - performs an exit
  * @user_input: the user input from prompt.c main function
  *
- * Return: it return 0, indicating the memory is freed and the shell 
+ * Return: it return 0, indicating the memory is freed and the shell
  * process is killed
  */
 

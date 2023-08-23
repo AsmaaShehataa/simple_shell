@@ -3,6 +3,7 @@
 /**
  * print_env - printf the envirement in the screen.
  * @env: the environment variable.
+ * @user_input: the given operand.
  *
  * Return: nothing.
  */
