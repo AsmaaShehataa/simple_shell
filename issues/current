@@ -1,8 +1,8 @@
 fixing the technical memory errors pointed by valgrind
 betty styling is done
 betty documentation is done
-refactoring the code for prompt.c, in order to fix betty-styling more than 40 line error
-removing the debugging messages.
-clean the code from the '//' C++ commenting style
+refactoring the code for prompt.c is done by introducing two new functions
+removing debugging messages is done.
+clean the code from the '//' C++ commenting style is done
 removing the executable from the repository, so it will contain only the .c and .h files
 replace all the unallowed fucntions in the code.
