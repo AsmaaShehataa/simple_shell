@@ -22,3 +22,14 @@ in file of path_handler we've created the function of "modify_buffer"--> handels
 * along with the AUTHORS 
 Asmaa Shehata 
 Mohamed Amouch 
+
+** The Power of the Shell**
+
+This Shell can do the following:-       
+- print the Envrionment "env"
+- print PWD
+- print ls
+- print ls -la
+- print exit
+- tests in both interactive and non- interactive modes are working fine
+
