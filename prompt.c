@@ -9,10 +9,9 @@
  * Return: exit_success in case of success, -1 otherwise.
  */
 
-int main(int argc __attribute__((unused)), char *argv[]__attribute__((unused))
-	 , char **env)
+int main(int argc, char **argv, char **env)
 {
-	char *user_input, sign, sp;
+	char *user_input, sign, sp, *user_input_ni;
 	size_t len;
 	ssize_t nread;
 
@@ -38,9 +37,17 @@ int main(int argc __attribute__((unused)), char *argv[]__attribute__((unused))
 			user_input[nread - 1] = '\0';
 			prompt_holder(user_input, env, nread);
 		}
-	}
-	else
+	} else
 	{
+		user_input_ni = NULL;
+		len = 0;
+		while ((nread = getline(&user_input_ni, &len, stdin)) != -1)
+		{
+			user_input_ni[nread - 1] = '\0';
+			prompt_holder(user_input_ni, env, nread);
+			user_input_ni = NULL;
+			len = 0;
+		}
 	}
 	exit(EXIT_SUCCESS);
 }
