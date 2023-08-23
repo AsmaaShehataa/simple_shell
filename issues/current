@@ -5,3 +5,4 @@ refactoring the code for prompt.c, in order to fix betty-styling more than 40 li
 removing the debugging messages.
 clean the code from the '//' C++ commenting style
 removing the executable from the repository, so it will contain only the .c and .h files
+replace all the unallowed fucntions in the code.
