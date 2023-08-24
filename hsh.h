@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <signal.h>
+extern char **environ;
 
 char **arg_process(char *user_input);
 void exec_command(char **arr_holder, char **env, char *user_input,

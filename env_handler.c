@@ -11,7 +11,7 @@
 int print_env(char **env __attribute__((unused)), char *user_input)
 {
 	int counter;
-	extern char **environ;
+
 	counter = 0;
 	if (strcmp(user_input, "env") == 0)
 	{

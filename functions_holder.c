@@ -39,11 +39,11 @@ void prompt_holder(char *user_input, char **env, int nread)
 
 
 void slash_status_holder(int slash_status, char **arr_holder,
-			 char *executable_holder, char **env __attribute__((unused)), char *user_input)
+			 char *executable_holder, char **env __attribute__((unused)),
+			 char *user_input)
 {
 	char *command_holder __attribute__ ((unused)), *c_command_holder;
 	int command_status, command_availability;
-	extern char **environ;
 
 	if (slash_status == -1)
 	{
