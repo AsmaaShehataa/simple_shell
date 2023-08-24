@@ -8,16 +8,16 @@
  * Return: nothing.
  */
 
-int print_env(char **env, char *user_input)
+int print_env(char **env __attribute__((unused)), char *user_input)
 {
 	int counter;
-
+	extern char **environ;
 	counter = 0;
 	if (strcmp(user_input, "env") == 0)
 	{
-		while (env[counter] != NULL)
+		while (environ[counter] != NULL)
 		{
-			print_string(env[counter]);
+			print_string(environ[counter]);
 			counter++;
 		}
 		return (0);

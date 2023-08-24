@@ -1,11 +1,12 @@
 #include "hsh.h"
 
-void exec_command(char **arg_array, char **env,
+void exec_command(char **arg_array, char **env __attribute__((unused)),
 		  char *user_input, int slash_status)
 {
 	pid_t parent_pid __attribute__ ((unused));
 	pid_t child_pid;
 	int wait_status;
+	extern char **environ;
 	int exec_status;
 
 	parent_pid = getpid();
@@ -18,7 +19,7 @@ void exec_command(char **arg_array, char **env,
 	}
 	else if ((child_pid) == 0)
 	{
-		exec_status = execve(arg_array[0], arg_array, env);
+		exec_status = execve(arg_array[0], arg_array, environ);
 		if (exec_status < 0)
 		{
 			perror("Error");
