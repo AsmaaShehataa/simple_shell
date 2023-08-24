@@ -1,5 +1,14 @@
 #include "hsh.h"
 
+/**
+ * exec_command - executes a given command
+ * @arg_array: the arg array.
+ * @env: the env.
+ * @user_input: the user input.
+ * @slash_status: the status of exeisting slashes.
+ *
+ * Return: nothing, only executs.
+ */
 void exec_command(char **arg_array, char **env __attribute__((unused)),
 		  char *user_input, int slash_status)
 {
