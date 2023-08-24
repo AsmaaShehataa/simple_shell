@@ -25,11 +25,12 @@ void prompt_holder(char *user_input, char **env, int nread)
 	}
 	if ((nread != 1) && (env_status == -1))
 	{
+		
 		arr_holder = arg_process(user_input);
 		executable_holder = strdup(arr_holder[0]);
 		slash_status = check_slash(executable_holder);
 		slash_status_holder(slash_status, arr_holder,
-				    executable_holder, env, user_input);
+		executable_holder, env, user_input);
 	}
 	else
 	{
