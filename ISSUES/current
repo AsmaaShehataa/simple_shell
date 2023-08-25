@@ -1,8 +1,0 @@
-fixing the technical memory errors pointed by valgrind
-betty styling is done
-betty documentation is done
-refactoring the code for prompt.c is done by introducing two new functions
-removing debugging messages is done.
-clean the code from the '//' C++ commenting style is done
-removing the executable from the repository, so it will contain only the .c and .h files is done
-replace all the unallowed fucntions in the code. this is done by replacing printf() function with print_string()
