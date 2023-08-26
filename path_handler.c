@@ -17,6 +17,8 @@ char *modify_buffer(char *command)
 
 	counter = 0;
 	tmp = path_value("PATH");
+	if (tmp == NULL)
+		return (NULL);
 	strcpy(path_str, tmp);
 	buffer = arg_process(path_str, ":");
 
