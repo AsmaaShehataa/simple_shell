@@ -13,7 +13,7 @@
 
 void prompt_holder(char *user_input, char *av)
 {
-	char **arr_holder;
+	char **arr_holder, *tmp;
 	int command_status, slash_status, builtin_status;
 
 	arr_holder = arg_process(user_input, " \t");
@@ -38,12 +38,13 @@ void prompt_holder(char *user_input, char *av)
 		exec_command(arr_holder, av);
 	else
 	{
+		tmp = arr_holder[0];
 		arr_holder[0] = modify_buffer(arr_holder[0]);
 		if (arr_holder[0] == NULL)
 		{
 			prog.status = 127;
-			fprintf(stderr, "%s: %d: not found\n",
-					prog.name, prog.cmd_count);
+			fprintf(stderr, "%s: %d: %s: not found\n",
+					prog.name, prog.cmd_count, tmp);
 		}
 		else
 		{
