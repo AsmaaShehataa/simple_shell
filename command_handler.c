@@ -17,10 +17,15 @@ void exec_command(char **arg_array, char *av)
 		perror("Error");
 	else if (child_pid == 0)
 	{
+		prog.status = 0;
 		execve(arg_array[0], arg_array, environ);
 		perror(av);
 		exit(0);
 	}
 	else
+	{
 		wait(&wait_status);
+		if (WIFEXITED(wait_status) != 0)
+			prog.status = WEXITSTATUS(wait_status);
+	}
 }

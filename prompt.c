@@ -1,4 +1,5 @@
 #include "hsh.h"
+#include "globe.h"
 
 /**
  * main - the entry point.
@@ -14,6 +15,7 @@ int main(int argc __attribute__ ((unused)), char **argv)
 	size_t len;
 	ssize_t nread;
 
+	prog.name = argv[0];
 	user_input = NULL;
 	len = 0;
 	while (1)
@@ -26,9 +28,10 @@ int main(int argc __attribute__ ((unused)), char **argv)
 			if (isatty(STDIN_FILENO))
 				write(1, "\n", 1);
 			free(user_input);
-			exit(EXIT_SUCCESS);
+			exit(prog.status);
 		}
 		user_input[nread - 1] = '\0';
 		prompt_holder(user_input, argv[0]);
+		prog.cmd_count++;
 	}
 }

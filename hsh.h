@@ -11,6 +11,15 @@
 #include <signal.h>
 extern char **environ;
 
+struct hsh_status
+{
+	char *name;
+	int cmd_count;
+	int status;
+};
+typedef struct hsh_status hsh_t;
+extern hsh_t prog;
+
 char **arg_process(char *user_input, char *delim);
 void exec_command(char **arr_holder, char *av);
 int print_env(char **arr_holder);

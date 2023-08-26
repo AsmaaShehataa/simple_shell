@@ -41,8 +41,9 @@ void prompt_holder(char *user_input, char *av)
 		arr_holder[0] = modify_buffer(arr_holder[0]);
 		if (arr_holder[0] == NULL)
 		{
-			write(1, av, 5);
-			print_string(": No such file or directory");
+			prog.status = 127;
+			fprintf(stderr, "%s: %d: not found\n",
+					prog.name, prog.cmd_count);
 		}
 		else
 		{
