@@ -25,7 +25,7 @@ int  b_exit(char **arr_holder, char *user_input)
 	{
 		if (isdigit(tmp[pos]) == 0)
 		{
-			fprintf(stderr, "%s: %d: Illegal number: %s\n",
+			fprintf(stderr, "%s: %d: exit: Illegal number: %s\n",
 				prog.name, prog.cmd_count, tmp);
 			prog.status = 2;
 			return (1);
