@@ -23,6 +23,7 @@ int main(int argc __attribute__ ((unused)), char **argv)
 		if (isatty(STDIN_FILENO))
 			write(1, "$ ", 2);
 		nread = getline(&user_input, &len, stdin);
+		prog.cmd_count++;
 		if (nread < 1)
 		{
 			if (isatty(STDIN_FILENO))
@@ -32,6 +33,5 @@ int main(int argc __attribute__ ((unused)), char **argv)
 		}
 		user_input[nread - 1] = '\0';
 		prompt_holder(user_input, argv[0]);
-		prog.cmd_count++;
 	}
 }
